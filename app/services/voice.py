@@ -1292,7 +1292,7 @@ def siliconflow_tts(
                     ]
 
                 logger.success(f"siliconflow tts succeeded: {voice_file}")
-                print("s", sub_maker.subs, sub_maker.offset)
+                logger.debug(f"s {sub_maker.subs} {sub_maker.offset}")
                 return sub_maker
             else:
                 logger.error(
@@ -1578,10 +1578,10 @@ if __name__ == "__main__":
     voice_name = "zh-CN-XiaoxiaoMultilingualNeural-V2-Female"
     voice_name = parse_voice_name(voice_name)
     voice_name = is_azure_v2_voice(voice_name)
-    print(voice_name)
+    logger.debug(voice_name)
 
     voices = get_all_azure_voices()
-    print(len(voices))
+    logger.debug(len(voices))
 
     async def _do():
         temp_dir = utils.storage_dir("temp")
@@ -1626,7 +1626,7 @@ if __name__ == "__main__":
 
         text = _format_text(text)
         lines = utils.split_string_by_punctuations(text)
-        print(lines)
+        logger.debug(lines)
 
         for voice_name in voice_names:
             voice_file = f"{temp_dir}/tts-{voice_name}.mp3"
@@ -1636,7 +1636,7 @@ if __name__ == "__main__":
             )
             create_subtitle(sub_maker=sub_maker, text=text, subtitle_file=subtitle_file)
             audio_duration = get_audio_duration(sub_maker)
-            print(f"voice: {voice_name}, audio duration: {audio_duration}s")
+            logger.debug(f"voice: {voice_name}, audio duration: {audio_duration}s")
 
     loop = asyncio.get_event_loop_policy().get_event_loop()
     try:
