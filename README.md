@@ -153,6 +153,7 @@ git clone https://github.com/harry0703/MoneyPrinterTurbo.git
 - 将 `config.example.toml` 文件复制一份，命名为 `config.toml`
 - 按照 `config.toml` 文件中的说明，配置好 `pexels_api_keys` 和 `llm_provider`，并根据 llm_provider 对应的服务商，配置相关的
   API Key
+- 如果需要使用自定义视频模型，配置 `[video_model]` 部分的 `endpoint` 和 `api_key`
 
 ### Docker部署 🐳
 

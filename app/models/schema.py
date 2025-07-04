@@ -77,6 +77,7 @@ class VideoParams(BaseModel):
     video_clip_duration: Optional[int] = 5
     video_count: Optional[int] = 1
 
+    # Video material source: "pexels", "pixabay", "local" or "custom_model"
     video_source: Optional[str] = "pexels"
     video_materials: Optional[List[MaterialInfo]] = (
         None  # Materials used to generate the video
@@ -121,6 +122,7 @@ class SubtitleRequest(BaseModel):
     font_size: int = 60
     stroke_color: Optional[str] = "#000000"
     stroke_width: float = 1.5
+    # Video material source when generating subtitles
     video_source: Optional[str] = "local"
     subtitle_enabled: Optional[str] = "true"
 
