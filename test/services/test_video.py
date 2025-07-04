@@ -68,7 +68,7 @@ class TestVideoService(unittest.TestCase):
             self.assertIn("\n", wrapped_text_en)
             
             # test chinese text wrapping
-            test_text_zh = "这是一段用来测试中文长句换行的文本内容，应该会根据宽度限制进行换行处理"
+            test_text_zh = "這是一段用來測試中文長句換行的文本內容，應該會根據寬度限制進行換行處理"
             wrapped_text_zh, text_height_zh = vd.wrap_text(
                 text=test_text_zh,
                 max_width=300,

@@ -79,9 +79,9 @@
 <table>
 <thead>
 <tr>
-<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《如何增加生活的乐趣》</th>
-<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《金钱的作用》<br>更真实的合成声音</th>
-<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《生命的意义是什么》</th>
+<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《如何增加生活的樂趣》</th>
+<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《金錢的作用》<br>更真實的合成聲音</th>
+<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《生命的意義是什麼》</th>
 </tr>
 </thead>
 <tbody>
@@ -98,8 +98,8 @@
 <table>
 <thead>
 <tr>
-<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji>《生命的意义是什么》</th>
-<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji>《为什么要运动》</th>
+<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji>《生命的意義是什麼》</th>
+<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji>《為什麼要運動》</th>
 </tr>
 </thead>
 <tbody>
@@ -252,6 +252,18 @@ python main.py
 所有支持的声音列表，可以查看：[声音列表](./docs/voice-list.txt)
 
 2024-04-16 v1.1.2 新增了9种Azure的语音合成声音，需要配置API KEY，该声音合成的更加真实。
+
+### 自定义TTS服务
+
+在 `config.toml` 中新增如下配置，即可接入你自己的语音合成接口：
+
+```toml
+[custom_tts]
+endpoint = "http://your-tts-endpoint"
+api_key = "your-api-key"
+```
+
+在声音名称前加上 `custom:` 前缀即可使用，例如 `custom:en-US-amy`。
 
 ## 字幕生成 📜
 
