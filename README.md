@@ -252,6 +252,18 @@ python main.py
 
 2024-04-16 v1.1.2 新增了9种Azure的语音合成声音，需要配置API KEY，该声音合成的更加真实。
 
+### 自定义TTS服务
+
+在 `config.toml` 中新增如下配置，即可接入你自己的语音合成接口：
+
+```toml
+[custom_tts]
+endpoint = "http://your-tts-endpoint"
+api_key = "your-api-key"
+```
+
+在声音名称前加上 `custom:` 前缀即可使用，例如 `custom:en-US-amy`。
+
 ## 字幕生成 📜
 
 当前支持2种字幕生成方式：

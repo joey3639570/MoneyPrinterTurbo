@@ -634,6 +634,7 @@ with middle_panel:
             ("azure-tts-v1", "Azure TTS V1"),
             ("azure-tts-v2", "Azure TTS V2"),
             ("siliconflow", "SiliconFlow TTS"),
+            ("custom", "Custom TTS"),
         ]
 
         # 获取保存的TTS服务器，默认为v1
@@ -802,6 +803,28 @@ with middle_panel:
             )
 
             config.siliconflow["api_key"] = siliconflow_api_key
+
+        # Custom TTS settings
+        if selected_tts_server == "custom" or (
+            voice_name and voice.is_custom_voice(voice_name)
+        ):
+            saved_custom_api_key = config.custom_tts.get("api_key", "")
+            saved_custom_endpoint = config.custom_tts.get("endpoint", "")
+
+            custom_api_key = st.text_input(
+                tr("Custom TTS API Key"),
+                value=saved_custom_api_key,
+                type="password",
+                key="custom_tts_api_key_input",
+            )
+            custom_endpoint = st.text_input(
+                tr("Custom TTS Endpoint"),
+                value=saved_custom_endpoint,
+                key="custom_tts_endpoint_input",
+            )
+
+            config.custom_tts["api_key"] = custom_api_key
+            config.custom_tts["endpoint"] = custom_endpoint
 
         params.voice_volume = st.selectbox(
             tr("Speech Volume"),

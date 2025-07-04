@@ -207,6 +207,11 @@ speech_region = ""
 # Get your API key at https://siliconflow.cn
 api_key = ""
 
+[custom_tts]
+# Custom TTS service
+endpoint = ""
+api_key = ""
+
 [ui]
 # UI related settings
 # 是否隐藏日志信息
