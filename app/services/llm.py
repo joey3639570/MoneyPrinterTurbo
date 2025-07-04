@@ -347,8 +347,8 @@ Generate a script for a video, depending on the subject of the video.
             else:
                 logging.error("gpt returned an empty response")
 
-            # g4f may return an error message
-            if final_script and "当日额度已消耗完" in final_script:
+            # g4f may return an error message like "當日額度已消耗完"
+            if final_script and "當日額度已消耗完" in final_script:
                 raise ValueError(final_script)
 
             if final_script:
