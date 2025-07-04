@@ -1077,6 +1077,11 @@ def is_siliconflow_voice(voice_name: str):
     return voice_name.startswith("siliconflow:")
 
 
+def is_custom_voice(voice_name: str):
+    """Check if the voice uses the custom TTS provider."""
+    return voice_name.startswith("custom:")
+
+
 def tts(
     text: str,
     voice_name: str,
@@ -1102,6 +1107,16 @@ def tts(
             )
         else:
             logger.error(f"Invalid siliconflow voice name format: {voice_name}")
+            return None
+    elif is_custom_voice(voice_name):
+        # custom:voice-id
+        parts = voice_name.split(":", 1)
+        if len(parts) == 2:
+            return custom_tts(
+                text, parts[1], voice_rate, voice_file, voice_volume
+            )
+        else:
+            logger.error(f"Invalid custom voice name format: {voice_name}")
             return None
     return azure_tts_v1(text, voice_name, voice_rate, voice_file)
 
@@ -1285,6 +1300,70 @@ def siliconflow_tts(
                 )
         except Exception as e:
             logger.error(f"siliconflow tts failed: {str(e)}")
+
+    return None
+
+
+def custom_tts(
+    text: str,
+    voice: str,
+    voice_rate: float,
+    voice_file: str,
+    voice_volume: float = 1.0,
+) -> Union[SubMaker, None]:
+    """Generic custom TTS using user provided endpoint."""
+    text = text.strip()
+    endpoint = config.custom_tts.get("endpoint", "")
+    api_key = config.custom_tts.get("api_key", "")
+
+    if not endpoint or not api_key:
+        logger.error("Custom TTS endpoint or api_key is not set")
+        return None
+
+    payload = {
+        "text": text,
+        "voice": voice,
+        "rate": voice_rate,
+        "volume": voice_volume,
+    }
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+
+    for i in range(3):
+        try:
+            logger.info(
+                f"start custom tts, voice: {voice}, try: {i + 1}"
+            )
+            response = requests.post(endpoint, json=payload, headers=headers)
+            if response.status_code == 200:
+                with open(voice_file, "wb") as f:
+                    f.write(response.content)
+
+                sub_maker = SubMaker()
+                try:
+                    from moviepy import AudioFileClip
+
+                    audio_clip = AudioFileClip(voice_file)
+                    audio_duration = audio_clip.duration
+                    audio_clip.close()
+                    audio_duration_100ns = int(audio_duration * 10000000)
+                except Exception as e:  # pragma: no cover - fallback
+                    logger.warning(f"Failed to get audio duration: {str(e)}")
+                    audio_duration_100ns = 10000000
+
+                sub_maker.subs = [text]
+                sub_maker.offset = [(0, audio_duration_100ns)]
+
+                logger.success(f"custom tts succeeded: {voice_file}")
+                return sub_maker
+            else:
+                logger.error(
+                    f"custom tts failed with status code {response.status_code}: {response.text}"
+                )
+        except Exception as e:  # pragma: no cover - network call
+            logger.error(f"custom tts failed: {str(e)}")
 
     return None
 
