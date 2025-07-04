@@ -85,7 +85,7 @@ with lang_col:
             selected_index = i
 
     selected_language = st.selectbox(
-        "Language / 语言",
+        "Language / 語言",
         options=display_languages,
         index=selected_index,
         key="top_language_selector",
@@ -272,11 +272,11 @@ if not config.app.get("hide_config", False):
 
                 with llm_helper:
                     tips = """
-                            ##### Ollama配置说明
-                            - **API Key**: 随便填写，比如 123
-                            - **Base Url**: 一般为 http://localhost:11434/v1
-                                - 如果 `MoneyPrinterTurbo` 和 `Ollama` **不在同一台机器上**，需要填写 `Ollama` 机器的IP地址
-                                - 如果 `MoneyPrinterTurbo` 是 `Docker` 部署，建议填写 `http://host.docker.internal:11434/v1`
+                            ##### Ollama配置說明
+                            - **API Key**: 隨便填寫，比如 123
+                            - **Base Url**: 一般為 http://localhost:11434/v1
+                                - 如果 `MoneyPrinterTurbo` 和 `Ollama` **不在同一台機器上**，需要填寫 `Ollama` 機器的IP地址
+                                - 如果 `MoneyPrinterTurbo` 是 `Docker` 部署，建議填寫 `http://host.docker.internal:11434/v1`
                             - **Model Name**: 使用 `ollama list` 查看，比如 `qwen:7b`
                             """
 
@@ -285,11 +285,11 @@ if not config.app.get("hide_config", False):
                     llm_model_name = "gpt-3.5-turbo"
                 with llm_helper:
                     tips = """
-                            ##### OpenAI 配置说明
-                            > 需要VPN开启全局流量模式
-                            - **API Key**: [点击到官网申请](https://platform.openai.com/api-keys)
+                            ##### OpenAI 配置說明
+                            > 需要VPN開啟全局流量模式
+                            - **API Key**: [點擊到官網申請](https://platform.openai.com/api-keys)
                             - **Base Url**: 可以留空
-                            - **Model Name**: 填写**有权限**的模型，[点击查看模型列表](https://platform.openai.com/settings/organization/limits)
+                            - **Model Name**: 填寫**有權限**的模型，[點擊查看模型列表](https://platform.openai.com/settings/organization/limits)
                             """
 
             if llm_provider == "moonshot":
@@ -297,10 +297,10 @@ if not config.app.get("hide_config", False):
                     llm_model_name = "moonshot-v1-8k"
                 with llm_helper:
                     tips = """
-                            ##### Moonshot 配置说明
-                            - **API Key**: [点击到官网申请](https://platform.moonshot.cn/console/api-keys)
-                            - **Base Url**: 固定为 https://api.moonshot.cn/v1
-                            - **Model Name**: 比如 moonshot-v1-8k，[点击查看模型列表](https://platform.moonshot.cn/docs/intro#%E6%A8%A1%E5%9E%8B%E5%88%97%E8%A1%A8)
+                            ##### Moonshot 配置說明
+                            - **API Key**: [點擊到官網申請](https://platform.moonshot.cn/console/api-keys)
+                            - **Base Url**: 固定為 https://api.moonshot.cn/v1
+                            - **Model Name**: 比如 moonshot-v1-8k，[點擊查看模型列表](https://platform.moonshot.cn/docs/intro#%E6%A8%A1%E5%9E%8B%E5%88%97%E8%A1%A8)
                             """
             if llm_provider == "oneapi":
                 if not llm_model_name:
@@ -309,10 +309,10 @@ if not config.app.get("hide_config", False):
                     )
                 with llm_helper:
                     tips = """
-                        ##### OneAPI 配置说明
-                        - **API Key**: 填写您的 OneAPI 密钥
-                        - **Base Url**: 填写 OneAPI 的基础 URL
-                        - **Model Name**: 填写您要使用的模型名称，例如 claude-3-5-sonnet-20240620
+                        ##### OneAPI 配置說明
+                        - **API Key**: 填寫您的 OneAPI 密鑰
+                        - **Base Url**: 填寫 OneAPI 的基礎 URL
+                        - **Model Name**: 填寫您要使用的模型名稱，例如 claude-3-5-sonnet-20240620
                         """
 
             if llm_provider == "qwen":
@@ -320,10 +320,10 @@ if not config.app.get("hide_config", False):
                     llm_model_name = "qwen-max"
                 with llm_helper:
                     tips = """
-                            ##### 通义千问Qwen 配置说明
-                            - **API Key**: [点击到官网申请](https://dashscope.console.aliyun.com/apiKey)
+                            ##### 通義千問Qwen 配置說明
+                            - **API Key**: [點擊到官網申請](https://dashscope.console.aliyun.com/apiKey)
                             - **Base Url**: 留空
-                            - **Model Name**: 比如 qwen-max，[点击查看模型列表](https://help.aliyun.com/zh/dashscope/developer-reference/model-introduction#3ef6d0bcf91wy)
+                            - **Model Name**: 比如 qwen-max，[點擊查看模型列表](https://help.aliyun.com/zh/dashscope/developer-reference/model-introduction#3ef6d0bcf91wy)
                             """
 
             if llm_provider == "g4f":
@@ -331,20 +331,20 @@ if not config.app.get("hide_config", False):
                     llm_model_name = "gpt-3.5-turbo"
                 with llm_helper:
                     tips = """
-                            ##### gpt4free 配置说明
-                            > [GitHub开源项目](https://github.com/xtekky/gpt4free)，可以免费使用GPT模型，但是**稳定性较差**
-                            - **API Key**: 随便填写，比如 123
+                            ##### gpt4free 配置說明
+                            > [GitHub開源項目](https://github.com/xtekky/gpt4free)，可以免費使用GPT模型，但是**穩定性較差**
+                            - **API Key**: 隨便填寫，比如 123
                             - **Base Url**: 留空
-                            - **Model Name**: 比如 gpt-3.5-turbo，[点击查看模型列表](https://github.com/xtekky/gpt4free/blob/main/g4f/models.py#L308)
+                            - **Model Name**: 比如 gpt-3.5-turbo，[點擊查看模型列表](https://github.com/xtekky/gpt4free/blob/main/g4f/models.py#L308)
                             """
             if llm_provider == "azure":
                 with llm_helper:
                     tips = """
-                            ##### Azure 配置说明
-                            > [点击查看如何部署模型](https://learn.microsoft.com/zh-cn/azure/ai-services/openai/how-to/create-resource)
-                            - **API Key**: [点击到Azure后台创建](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/OpenAI)
+                            ##### Azure 配置說明
+                            > [點擊查看如何部署模型](https://learn.microsoft.com/zh-cn/azure/ai-services/openai/how-to/create-resource)
+                            - **API Key**: [點擊到Azure後台創建](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/OpenAI)
                             - **Base Url**: 留空
-                            - **Model Name**: 填写你实际的部署名
+                            - **Model Name**: 填寫你實際的部署名
                             """
 
             if llm_provider == "gemini":
@@ -353,9 +353,9 @@ if not config.app.get("hide_config", False):
 
                 with llm_helper:
                     tips = """
-                            ##### Gemini 配置说明
-                            > 需要VPN开启全局流量模式
-                            - **API Key**: [点击到官网申请](https://ai.google.dev/)
+                            ##### Gemini 配置說明
+                            > 需要VPN開啟全局流量模式
+                            - **API Key**: [點擊到官網申請](https://ai.google.dev/)
                             - **Base Url**: 留空
                             - **Model Name**: 比如 gemini-1.0-pro
                             """
@@ -367,19 +367,19 @@ if not config.app.get("hide_config", False):
                     llm_base_url = "https://api.deepseek.com"
                 with llm_helper:
                     tips = """
-                            ##### DeepSeek 配置说明
-                            - **API Key**: [点击到官网申请](https://platform.deepseek.com/api_keys)
-                            - **Base Url**: 固定为 https://api.deepseek.com
-                            - **Model Name**: 固定为 deepseek-chat
+                            ##### DeepSeek 配置說明
+                            - **API Key**: [點擊到官網申請](https://platform.deepseek.com/api_keys)
+                            - **Base Url**: 固定為 https://api.deepseek.com
+                            - **Model Name**: 固定為 deepseek-chat
                             """
 
             if llm_provider == "ernie":
                 with llm_helper:
                     tips = """
-                            ##### 百度文心一言 配置说明
-                            - **API Key**: [点击到官网申请](https://console.bce.baidu.com/qianfan/ais/console/applicationConsole/application)
-                            - **Secret Key**: [点击到官网申请](https://console.bce.baidu.com/qianfan/ais/console/applicationConsole/application)
-                            - **Base Url**: 填写 **请求地址** [点击查看文档](https://cloud.baidu.com/doc/WENXINWORKSHOP/s/jlil56u11#%E8%AF%B7%E6%B1%82%E8%AF%B4%E6%98%8E)
+                            ##### 百度文心一言 配置說明
+                            - **API Key**: [點擊到官網申請](https://console.bce.baidu.com/qianfan/ais/console/applicationConsole/application)
+                            - **Secret Key**: [點擊到官網申請](https://console.bce.baidu.com/qianfan/ais/console/applicationConsole/application)
+                            - **Base Url**: 填寫 **請求地址** [點擊查看文檔](https://cloud.baidu.com/doc/WENXINWORKSHOP/s/jlil56u11#%E8%AF%B7%E6%B1%82%E8%AF%B4%E6%98%8E)
                             """
 
             if llm_provider == "pollinations":
@@ -395,7 +395,7 @@ if not config.app.get("hide_config", False):
 
             if tips and config.ui["language"] == "zh":
                 st.warning(
-                    "中国用户建议使用 **DeepSeek** 或 **Moonshot** 作为大模型提供商\n- 国内可直接访问，不需要VPN \n- 注册就送额度，基本够用"
+                    "中國用戶建議使用 **DeepSeek** 或 **Moonshot** 作為大模型提供商\n- 國內可直接訪問，不需要VPN \n- 註冊就送額度，基本夠用"
                 )
                 st.info(tips)
 
