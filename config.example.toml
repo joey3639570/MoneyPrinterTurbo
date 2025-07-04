@@ -207,6 +207,12 @@ speech_region = ""
 # Get your API key at https://siliconflow.cn
 api_key = ""
 
+[video_model]
+# Custom video generation API
+# Set endpoint to your service URL, leave api_key empty if not required
+endpoint = ""
+api_key = ""
+
 [ui]
 # UI related settings
 # 是否隐藏日志信息
